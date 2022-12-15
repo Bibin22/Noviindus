@@ -1,0 +1,98 @@
+{% extends 'cart/cart_base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="margin-top:50px">
+  <h1>Electronics</h1>
+<div id="owl-example" class="owl-carousel">
+{% for i in electronics %}
+
+  <div class="card" style="width: 18rem;">
+  <img src="{{i.product_image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{i.product_name}}</h5>
+    <p class="card-text">Rs. {{i.product_prize}}</p>
+    <a href="{% url 'add_to_cart' i.product_id %}" class="btn btn-primary">Add to Cart</a>
+  </div>
+</div>
+
+{% endfor %}
+    </div>
+<h1>Cloths</h1>
+<div id="owl-example" class="owl-carousel">
+  {% for i in cloths %}
+
+  <div class="card" style="width: 18rem;">
+  <img src="{{i.product_image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{i.product_name}}</h5>
+    <p class="card-text">Rs. {{i.product_prize}}</p>
+     <a href="{% url 'add_to_cart' i.product_id %}" class="btn btn-primary">Add to Cart</a>
+  </div>
+</div>
+
+{% endfor %}
+</div>
+<h1>Vegetables</h1>
+<div id="owl-example" class="owl-carousel">
+  {% for i in veg %}
+
+  <div class="card" style="width: 18rem;">
+  <img src="{{i.product_image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{i.product_name}}</h5>
+    <p class="card-text">Rs .{{i.product_prize}}</p>
+     <a href="{% url 'add_to_cart' i.product_id %}" class="btn btn-primary">Add to Cart</a>
+  </div>
+</div>
+
+{% endfor %}
+</div>
+<h1>Furniture</h1>
+<div id="owl-example" class="owl-carousel">
+  {% for i in furniture %}
+
+  <div class="card" style="width: 18rem;">
+  <img src="{{i.product_image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{i.product_name}}</h5>
+    <p class="card-text">Rs .{{i.product_prize}}</p>
+    <a href="{% url 'add_to_cart' i.product_id %}" class="btn btn-primary">Add to Cart</a>
+  </div>
+</div>
+
+{% endfor %}
+</div>
+<h1>Medicines</h1>
+<div id="owl-example" class="owl-carousel">
+  {% for i in med %}
+
+  <div class="card" style="width: 18rem;">
+  <img src="{{i.product_image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{i.product_name}}</h5>
+    <p class="card-text">Rs .{{i.product_prize}}</p>
+     <a href="{% url 'add_to_cart' i.product_id %}" class="btn btn-primary">Add to Cart</a>
+  </div>
+</div>
+
+{% endfor %}
+</div>
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+  $(".owl-carousel").owlCarousel({
+      itemsDesktop : [1499,4],
+      itemsDesktopSmall : [1199,3],
+      itemsTablet : [899,2],
+      itemsMobile : [599,1],
+      navigation : true,
+      navigationText : ['<span class="fa-stack"><i class="fa fa-circle fa-stack-1x"></i><i class="fa fa-chevron-circle-left fa-stack-1x fa-inverse"></i></span>','<span class="fa-stack"><i class="fa fa-circle fa-stack-1x"></i><i class="fa fa-chevron-circle-right fa-stack-1x fa-inverse"></i></span>'],
+  });
+
+});
+</script>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'cart/cart_base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="margin-top:50px;">
+    <div class="container">
+        <div class="row">
+            {% if page_obj %}
+
+            {% for i in page_obj %}
+
+            <div class="card" style="width: 18rem;">
+                <img src="{{i.product.product_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.product.product_name}}</h5>
+                    <p class="card-text">Rs. {{i.product.product_prize}}</p>
+                    <a href="{% url 'remove_from_cart' i.product.product_id %}" class="btn btn-danger">Remove From
+                        Cart</a>
+                </div>
+            </div>
+
+            {% endfor %}
+            <div class="col-1"></div>
+
+
+            {% else %}
+            <div class="form-group" align="center">
+                <div class="col-md-12" style="margin-top:20%;">
+
+                    <h2>Cart is Empty! <img src=""><a href="{% url 'home'%}">Click Here!</a> To View More Products </h2>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+        <div class="pagination-box clearfix">
+            {% if page_obj.has_other_pages %}
+            <!-- Pagination -->
+            <nav class="my-3 container">
+                <ul class="pagination pg-grey justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?{% if query %}q={{query}}&{% endif %}page={{ page_obj.previous_page_number }}">&laquo;
+                            Previous</a>
+                    </li>
+                    {% endif %}
+
+                    {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                    <li class="page-item active"><a class="page-link">{{ i }}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link"
+                                             href="?{% if query %}q={{query}}&{% endif %}page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?{% if query %}q={{query}}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?{% if query %}q={{query}}&{% endif %}page={{ page_obj.paginator.num_pages }}">Last
+                            &raquo;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+    {% endblock %}
